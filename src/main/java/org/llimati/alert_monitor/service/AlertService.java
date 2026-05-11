@@ -5,6 +5,8 @@ import org.llimati.alert_monitor.model.Alert;
 import org.llimati.alert_monitor.repository.AlertRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class AlertService {
@@ -14,4 +16,7 @@ public class AlertService {
         return alertRepository.save(alert);
     }
 
+    public List<Alert> getAllAlerts() {
+        return alertRepository.findAll();
+    }
 }
