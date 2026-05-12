@@ -42,4 +42,10 @@ public class AlertService {
         return alertRepository.findBySeverityAndStatus(Severity.CRITICAL, Status.NEW);
     }
 
+    public Alert acknowledge(Long id) {
+        Alert alert = alertRepository.findById(id).orElseThrow();
+        alert.setStatus(Status.ACKNOWLEDGED);
+        return alertRepository.save(alert);
+    }
+
 }

@@ -23,4 +23,9 @@ public class AlertController {
     public List<Alert> getAllAlerts() {
         return alertService.getAllAlerts();
     }
+
+    @PatchMapping("/{id}/acknowledge")
+    public Alert acknowledge(@PathVariable Long id) {
+        return alertService.acknowledge(id);
+    }
 }
