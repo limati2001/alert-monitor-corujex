@@ -62,7 +62,7 @@ The API will be available at `http://localhost:8080`.
 
 ## Configuration
 
-Copy `application.properties` and adjust for your environment:
+Copy `application.properties` to adjust for your environment:
 
 ```properties
 # Email (for critical alert forwarding)
