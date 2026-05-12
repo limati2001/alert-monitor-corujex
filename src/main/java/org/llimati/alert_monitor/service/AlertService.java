@@ -3,6 +3,7 @@ package org.llimati.alert_monitor.service;
 import lombok.RequiredArgsConstructor;
 import org.llimati.alert_monitor.model.Alert;
 import org.llimati.alert_monitor.model.Severity;
+import org.llimati.alert_monitor.model.Status;
 import org.llimati.alert_monitor.repository.AlertRepository;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -29,12 +30,16 @@ public class AlertService {
         return alertRepository.findAll();
     }
 
-    private void sendCriticalAlertEmail(Alert alert) {
+    public void sendCriticalAlertEmail(Alert alert) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo("llimati2001@gmail.com");
         message.setSubject("CRITICAL Alert: " + alert.getSource());
         message.setText("Alert message: " + alert.getMessage() + "\nSource: " + alert.getSource() + "\nTime: " + alert.getCreatedAt());
         mailSender.send(message);
+    }
+
+    public List<Alert> findCriticalUnacknowledged() {
+        return alertRepository.findBySeverityAndStatus(Severity.CRITICAL, Status.NEW);
     }
 
 }
